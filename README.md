@@ -61,4 +61,4 @@ The module targets BDVM Web API 1.0. Consumers should treat route names, permiss
 
 ## License
 
-Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) and the applied copyright [NOTICE](NOTICE).
