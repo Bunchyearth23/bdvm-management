@@ -31,7 +31,9 @@ This module does not calculate balances, transfer money, assign permissions, buy
 
 ## Dependencies
 
-The source project references `BDVM.Common`, which contains the web contracts. At runtime it requires a compatible `BDVM.Web` host and the feature services represented by its dashboard. Those runtime requirements will be encoded in the standalone package during the packaging milestone.
+The source project references `BDVM.Common`, which contains the web contracts. Its manifest declares the compatible `BDVM.Web` host as a runtime dependency. The feature services represented by the dashboard will be composed explicitly during the packaging milestone.
+
+External dependencies: none. Management does not depend directly on Remote Dispatch Live; transport belongs to Web/Dispatch composition.
 
 ## Build
 

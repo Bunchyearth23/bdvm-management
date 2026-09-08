@@ -1,1 +1,1 @@
-{"id":"BDVM.Management","version":"1.0.0","kind":"web-feature","dependencies":["BDVM.Common","BDVM.Web"]}
+{"id":"BDVM.Management","version":"1.0.0","kind":"web-feature","standalone":false,"dependencies":["BDVM.Common","BDVM.Web"],"runtimeDependencies":["BDVM.Web"]}
