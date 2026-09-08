@@ -17,6 +17,8 @@
 - Register the Management navigation entry and namespaced frontend asset.
 - Register `GET /api/modules/bdvm.management/snapshot` for authorized read models.
 - Register `POST /api/modules/bdvm.management/intent` for authenticated user intentions.
+- Register `POST /api/modules/bdvm.management/fleet/rename` for an explicit, versioned fleet-name intent.
+- Register explicit company-governance, wallet-transfer, market-purchase and one-shot initial-delivery intents.
 - Declare `management.read` and `management.intent` permissions explicitly.
 - Subscribe to the management realtime topic and publish the `bdvm.management.dashboard.v1` capability.
 - Keep the frontend contract stable while company, fleet and market services evolve behind it.
@@ -32,6 +34,10 @@ This module does not calculate balances, transfer money, assign permissions, buy
 ## Dependencies
 
 The source project references `BDVM.Common`, which contains the web contracts. Its manifest declares the compatible `BDVM.Web` host as a runtime dependency. The feature services represented by the dashboard will be composed explicitly during the packaging milestone.
+
+Fleet names are BDVM data, keyed by the persistent `AssetId`, limited to 48 characters and validated by the authoritative Fleet service. A company-owned asset can be renamed only by its leader or a member holding `ManageFleet`. The visible number painted by Number Manager remains an optional projection and is never used as identity or authority.
+
+Catalog purchases create owned virtual stock first. Physical delivery is a distinct host-authoritative intent, free exactly once, restricted to configured depot or service tracks, and committed only when the complete component set is confirmed. Company governance and wallet-transfer intents use the same authenticated host boundary and never calculate permissions in the frontend. Company creation starts at zero, and personal/company transfers mirror the authoritative vanilla wallet with compensation on refusal.
 
 External dependencies: none. Management does not depend directly on Remote Dispatch Live; transport belongs to Web/Dispatch composition.
 
