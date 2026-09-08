@@ -1,7 +1,54 @@
 # BDVM - Management
 
-Economic management frontend module. It displays authoritative state and sends intents without calculating balances or ownership.
+`BDVM.Management` is the economic-management feature for the BDVM web platform. It exposes a dashboard contract for personal wallets, companies, permissions, fleet and economic actions without moving business authority into the browser.
+
+## Status
+
+| Property | Value |
+| --- | --- |
+| Module kind | Web feature |
+| Target framework | .NET Framework 4.8 (`net48`) |
+| Build dependency | `BDVM.Common` |
+| Runtime platform | Compatible `BDVM.Web` host |
+| Standalone | No |
+
+## Responsibilities
+
+- Register the Management navigation entry and namespaced frontend asset.
+- Register `GET /api/modules/bdvm.management/snapshot` for authorized read models.
+- Register `POST /api/modules/bdvm.management/intent` for authenticated user intentions.
+- Declare `management.read` and `management.intent` permissions explicitly.
+- Subscribe to the management realtime topic and publish the `bdvm.management.dashboard.v1` capability.
+- Keep the frontend contract stable while company, fleet and market services evolve behind it.
+
+## Key surface
+
+`ManagementWebModule` implements `IBdvmWebModule`. Its manifest and registration code are intentionally small: transport adapters provide snapshot readers and intent handlers, while authoritative domain services perform validation and mutation.
+
+## Boundaries
+
+This module does not calculate balances, transfer money, assign permissions, buy vehicles or change ownership. A browser request is only an intent until the authoritative host accepts it. It is not a web server and does not bundle the BDVM Web platform.
+
+## Dependencies
+
+The source project references `BDVM.Common`, which contains the web contracts. At runtime it requires a compatible `BDVM.Web` host and the feature services represented by its dashboard. Those runtime requirements will be encoded in the standalone package during the packaging milestone.
+
+## Build
+
+With `BDVM.Common` beside this repository under `src/`:
+
+```powershell
+dotnet build .\BDVM.Management.csproj -c Release
+```
+
+## Testing and installation
+
+The web-host validation suite checks the module manifest, route namespace, permissions, assets and capability publication. There is currently no independent Management package or browser server. Use the matching `BDVM.Full` composition for integration testing.
+
+## Compatibility
+
+The module targets BDVM Web API 1.0. Consumers should treat route names, permission identifiers, realtime topics and capability IDs as versioned public contracts. Unknown intents must be refused by the host.
 
 ## License
 
-Licensed under the Apache License, Version 2.0. See `LICENSE`.
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
