@@ -53,7 +53,7 @@ node --test .\tests\management.test.cjs
 
 ## Testing and installation
 
-Frontend tests cover XSS-safe rendering, versioned intent metadata, reconciliation states and destructive-action confirmation. The Web backend suite covers authentication, permission, CSRF, same-origin, replay and invalid payloads. `Package.ps1` produces an independent Management archive; a compatible Web transport remains required at runtime.
+Frontend tests cover XSS-safe rendering, nested contract details, versioned intent metadata, reconciliation states and destructive-action confirmation. Authority tests refuse browser-supplied balances, ownership and permissions before dispatch. The Web backend suite covers authentication, permission, CSRF, same-origin, concurrent replay and invalid payloads. `Package.ps1` produces an independent Management archive; a compatible Web transport remains required at runtime.
 
 ## Compatibility
 

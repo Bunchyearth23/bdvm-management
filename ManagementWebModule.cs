@@ -8,7 +8,7 @@ public sealed class ManagementWebModule : IBdvmWebModule
     {
         Id = "BDVM.Management",
         DisplayName = "BDVM - Management",
-        ModuleVersion = "1.2.0",
+        ModuleVersion = "1.3.0",
         RequiredWebApi = new BdvmApiRange(new BdvmApiVersion(1, 0), new BdvmApiVersion(1, 0)),
         RouteNamespace = "/api/modules/bdvm.management",
         AssetNamespace = "modules/bdvm.management",

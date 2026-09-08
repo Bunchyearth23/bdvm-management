@@ -7,7 +7,7 @@ function table(items,filter=''){
   const box=document.createElement('div'),matching=(items||[]).filter(item=>JSON.stringify(item).toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
   if(!matching.length){text(box,'Aucune donnée.');return box}
   const grid=document.createElement('table'),body=document.createElement('tbody');
-  for(const item of matching){const row=document.createElement('tr');for(const [key,value] of Object.entries(item)){if(value!=null&&typeof value!=='object'){const cell=document.createElement('td');cell.dataset.field=key;text(cell,value);row.append(cell)}}body.append(row)}
+  for(const item of matching){const row=document.createElement('tr');for(const [key,value] of Object.entries(item)){if(value!=null){const cell=document.createElement('td');cell.dataset.field=key;text(cell,typeof value==='object'?JSON.stringify(value):value);row.append(cell)}}body.append(row)}
   grid.append(body);box.append(grid);return box;
 }
 class ManagementApp{
@@ -19,7 +19,7 @@ class ManagementApp{
   setStatus(state,message){this.status.dataset.state=state;text(this.status,message)}
   renderActions(panel,area){for(const action of (this.snapshot?.actions||[]).filter(x=>x.area===area)){const button=document.createElement('button');button.type='button';text(button,action.label);button.onclick=()=>this.submit(action.intentType,action.payload||{}, {confirmation:action.confirmation||''});panel.append(button)}}
   render(){this.root.querySelectorAll(':scope > :not(.bdvm-management__status)').forEach(x=>x.remove());const tabs=document.createElement('div');tabs.className='bdvm-management__tabs';const panel=document.createElement('section');panel.className='bdvm-management__panel';
-    for(const key of sections){const button=document.createElement('button');button.type='button';text(button,labels[key]);button.onclick=()=>{panel.replaceChildren();const title=document.createElement('h2'),filter=document.createElement('input'),results=document.createElement('div');text(title,labels[key]);filter.type='search';filter.placeholder='Filtrer';const draw=()=>results.replaceChildren(table(this.snapshot?.[key]||[],filter.value||''));filter.oninput=draw;draw();panel.append(title,filter,results);this.renderActions(panel,key)};tabs.append(button)}
+    for(const key of sections){const button=document.createElement('button');button.type='button';text(button,labels[key]);button.onclick=()=>{panel.replaceChildren();const title=document.createElement('h2'),filter=document.createElement('input'),results=document.createElement('div');text(title,labels[key]);filter.type='search';filter.placeholder='Filtrer';const enabled=this.snapshot?.featureFlags?.[key]!==false;const draw=()=>results.replaceChildren(enabled?table(this.snapshot?.[key]||[],filter.value||''):document.createTextNode('Module indisponible sur cet hôte.'));filter.oninput=draw;draw();panel.append(title,filter,results);if(enabled)this.renderActions(panel,key)};tabs.append(button)}
     const retry=document.createElement('button');retry.type='button';text(retry,'Retry/Reconcile');retry.onclick=()=>this.retryLast();tabs.append(retry);const logs=document.createElement('button');logs.type='button';text(logs,'Exporter les logs');logs.onclick=()=>this.transport.exportLogs();tabs.append(logs);this.root.append(tabs,panel);tabs.firstElementChild?.click()}
 }
 globalThis.BdvmManagement=Object.freeze({ManagementApp,create(root,transport){return new ManagementApp(root,transport)}})

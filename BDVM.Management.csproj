@@ -7,6 +7,7 @@
     <RootNamespace>BDVM.Management</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="tests\**\*.cs" />
     <ProjectReference Include="..\BDVM.Common\BDVM.Common.csproj" />
     <Content Include="Assets\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
