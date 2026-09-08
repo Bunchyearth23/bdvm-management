@@ -18,14 +18,14 @@
 - Register `GET /api/modules/bdvm.management/snapshot` for authorized read models.
 - Register `POST /api/modules/bdvm.management/intent` for authenticated user intentions.
 - Register `POST /api/modules/bdvm.management/fleet/rename` for an explicit, versioned fleet-name intent.
-- Register explicit company-governance, wallet-transfer, market-purchase and one-shot initial-delivery intents.
-- Declare `management.read` and `management.intent` permissions explicitly.
+- Register explicit company governance/dissolution, wallet, fleet, bundle, resale, maintenance, market, delivery, lease, assignment, financing, yard and industry intents.
+- Declare a separate permission for every mutation family.
 - Subscribe to the management realtime topic and publish the `bdvm.management.dashboard.v1` capability.
 - Keep the frontend contract stable while company, fleet and market services evolve behind it.
 
 ## Key surface
 
-`ManagementWebModule` implements `IBdvmWebModule`. Its manifest and registration code are intentionally small: transport adapters provide snapshot readers and intent handlers, while authoritative domain services perform validation and mutation.
+`ManagementWebModule` implements `IBdvmWebModule`. Its manifest and registration code expose bounded routes only: transport adapters provide snapshot readers and intent handlers, while authoritative domain services perform validation and mutation. The frontend renders companies, wallets, fleet, catalogue, leases, assignments, financing, yard plans and industry from the host snapshot.
 
 ## Boundaries
 
@@ -47,11 +47,13 @@ With `BDVM.Common` beside this repository under `src/`:
 
 ```powershell
 dotnet build .\BDVM.Management.csproj -c Release
+node --test .\tests\management.test.cjs
+.\Package.ps1
 ```
 
 ## Testing and installation
 
-The web-host validation suite checks the module manifest, route namespace, permissions, assets and capability publication. There is currently no independent Management package or browser server. Use the matching `BDVM.Full` composition for integration testing.
+Frontend tests cover XSS-safe rendering, versioned intent metadata, reconciliation states and destructive-action confirmation. The Web backend suite covers authentication, permission, CSRF, same-origin, replay and invalid payloads. `Package.ps1` produces an independent Management archive; a compatible Web transport remains required at runtime.
 
 ## Compatibility
 
