@@ -1,6 +1,6 @@
 # BDVM - Management
 
-`BDVM.Management` is the economic-management feature for the BDVM web platform. It exposes a dashboard contract for personal wallets, companies, permissions, fleet and economic actions without moving business authority into the browser.
+`BDVM.Management` is the economic-management feature for the BDVM web platform. It exposes responsive Companies, Wallets, Fleet, Catalog, Leases, Contracts, Industry, Passengers, Maintenance, Financing, Assignments, Yard Plans and Diagnostics views without moving business authority into the browser.
 
 ## Status
 
@@ -25,7 +25,9 @@
 
 ## Key surface
 
-`ManagementWebModule` implements `IBdvmWebModule`. Its manifest and registration code expose bounded routes only: transport adapters provide snapshot readers and intent handlers, while authoritative domain services perform validation and mutation. The frontend renders companies, wallets, fleet, catalogue, leases, assignments, financing, yard plans and industry from the host snapshot.
+`ManagementWebModule` implements `IBdvmWebModule`. Its manifest and registration code expose bounded routes only: transport adapters provide snapshot readers and intent handlers, while authoritative domain services perform validation and mutation. The frontend renders all Management areas from capability-gated host snapshots. Missing capabilities produce an explicit unavailable state instead of fabricated data. Labels, status messages and controls are English-only.
+
+Management is a separate interface from Dispatch. It shares only BDVM.Web authentication, session and shell services; it does not render or control track infrastructure.
 
 ## Boundaries
 

@@ -18,6 +18,10 @@ public sealed class ManagementWebSnapshot
     public IReadOnlyList<IReadOnlyDictionary<string, object>> Financing { get; set; } = Array.Empty<IReadOnlyDictionary<string, object>>();
     public IReadOnlyList<IReadOnlyDictionary<string, object>> YardPlans { get; set; } = Array.Empty<IReadOnlyDictionary<string, object>>();
     public IReadOnlyList<IReadOnlyDictionary<string, object>> Industry { get; set; } = Array.Empty<IReadOnlyDictionary<string, object>>();
+    public IReadOnlyList<IReadOnlyDictionary<string, object>> Contracts { get; set; } = Array.Empty<IReadOnlyDictionary<string, object>>();
+    public IReadOnlyList<IReadOnlyDictionary<string, object>> Passengers { get; set; } = Array.Empty<IReadOnlyDictionary<string, object>>();
+    public IReadOnlyList<IReadOnlyDictionary<string, object>> Maintenance { get; set; } = Array.Empty<IReadOnlyDictionary<string, object>>();
+    public IReadOnlyList<IReadOnlyDictionary<string, object>> Diagnostics { get; set; } = Array.Empty<IReadOnlyDictionary<string, object>>();
     public IReadOnlyList<ManagementActionDescriptor> Actions { get; set; } = Array.Empty<ManagementActionDescriptor>();
 }
 

@@ -8,7 +8,7 @@ public sealed class ManagementWebModule : IBdvmWebModule
     {
         Id = "BDVM.Management",
         DisplayName = "BDVM - Management",
-        ModuleVersion = "1.3.0",
+        ModuleVersion = "1.4.0",
         RequiredWebApi = new BdvmApiRange(new BdvmApiVersion(1, 0), new BdvmApiVersion(1, 0)),
         RouteNamespace = "/api/modules/bdvm.management",
         AssetNamespace = "modules/bdvm.management",
@@ -17,7 +17,8 @@ public sealed class ManagementWebModule : IBdvmWebModule
             "bdvm.management.dashboard.v1", "bdvm.management.companies.v1", "bdvm.management.wallets.v1",
             "bdvm.management.fleet.v1", "bdvm.management.fleet-naming.v1", "bdvm.management.market.v1",
             "bdvm.management.leases.v1", "bdvm.management.assignments.v1", "bdvm.management.financing.v1",
-            "bdvm.management.yard-plans.v1", "bdvm.management.industry.v1", "bdvm.management.logs.v1"
+            "bdvm.management.yard-plans.v1", "bdvm.management.industry.v1", "bdvm.management.logs.v1",
+            "bdvm.management.contracts.v1", "bdvm.management.passengers.v1", "bdvm.management.maintenance.v1", "bdvm.management.diagnostics.v1"
         },
         Permissions = new[]
         {
