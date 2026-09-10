@@ -17,6 +17,8 @@ internal static class Program
         Check(gateway.Execute(Request("bdvm.management.unknown.v1", new Dictionary<string, object>())).Code == "unknown-management-intent", "unknown intent is refused");
         var snapshot = gateway.Snapshot("player-a", "snapshot-1");
         Check(snapshot.CorrelationId == "snapshot-1" && snapshot.Version == 7, "snapshot comes from the authoritative port");
+        var field = new ManagementActionField { Name = "assetId", Options = new[] { "asset-1" }, OptionLabels = new Dictionary<string, string> { ["asset-1"] = "DE2 — Track T12P (ID: asset-1)" } };
+        Check(field.Options[0] == "asset-1" && field.OptionLabels["asset-1"].Contains("DE2 — Track T12P"), "human labels retain the authoritative identifier in action choices");
         Console.WriteLine("BDVM.Management authority tests: " + checks + "/" + checks + " passed"); return 0;
     }
 

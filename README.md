@@ -19,6 +19,7 @@
 - Register `POST /api/modules/bdvm.management/intent` for authenticated user intentions.
 - Register `POST /api/modules/bdvm.management/fleet/rename` for an explicit, versioned fleet-name intent.
 - Register explicit company governance/dissolution, wallet, fleet, bundle, resale, maintenance, market, delivery, lease, assignment, financing, yard and industry intents.
+- Expose loaded-station pilot-chain discovery, shortage-driven needs and separate personal/company wagon selectors computed by the authoritative host.
 - Declare a separate permission for every mutation family.
 - Subscribe to the management realtime topic and publish the `bdvm.management.dashboard.v1` capability.
 - Keep the frontend contract stable while company, fleet and market services evolve behind it.
@@ -55,7 +56,7 @@ node --test .\tests\management.test.cjs
 
 ## Testing and installation
 
-Frontend tests cover XSS-safe rendering, nested contract details, versioned intent metadata, reconciliation states and destructive-action confirmation. Authority tests refuse browser-supplied balances, ownership and permissions before dispatch. The Web backend suite covers authentication, permission, CSRF, same-origin, concurrent replay and invalid payloads. `Package.ps1` produces an independent Management archive; a compatible Web transport remains required at runtime.
+Frontend tests cover XSS-safe rendering, nested contract details, versioned intent metadata, host-provided multi-select wagon choices, reconciliation states and destructive-action confirmation. Authority tests refuse browser-supplied balances, ownership and permissions before dispatch. The Web backend suite covers authentication, permission, CSRF, same-origin, concurrent replay and invalid payloads. `Package.ps1` produces an independent Management archive; a compatible Web transport remains required at runtime.
 
 ## Compatibility
 

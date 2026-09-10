@@ -10,5 +10,6 @@
     <Compile Remove="tests\**\*.cs" />
     <ProjectReference Include="..\BDVM.Common\BDVM.Common.csproj" />
     <Content Include="Assets\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="Assets\**\*" />
   </ItemGroup>
 </Project>
