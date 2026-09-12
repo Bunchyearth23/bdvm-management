@@ -16,7 +16,7 @@ public sealed class ManagementWebModule : IBdvmWebModule
         {
             "bdvm.management.dashboard.v1", "bdvm.management.companies.v1", "bdvm.management.wallets.v1",
             "bdvm.management.fleet.v1", "bdvm.management.fleet-naming.v1", "bdvm.management.market.v1",
-            "bdvm.management.leases.v1", "bdvm.management.assignments.v1", "bdvm.management.financing.v1",
+            "bdvm.management.assignments.v1", "bdvm.management.financing.v1",
             "bdvm.management.yard-plans.v1", "bdvm.management.industry.v1", "bdvm.management.logs.v1",
             "bdvm.management.contracts.v1", "bdvm.management.passengers.v1", "bdvm.management.maintenance.v1", "bdvm.management.diagnostics.v1"
         },
@@ -24,7 +24,7 @@ public sealed class ManagementWebModule : IBdvmWebModule
         {
             "management.read", "management.intent", "management.company.govern", "management.wallet.transfer",
             "management.fleet.manage", "management.fleet.rename", "management.market.purchase", "management.fleet.deliver",
-            "management.lease.manage", "management.assignment.manage", "management.finance.manage", "management.yard.manage",
+            "management.assignment.manage", "management.finance.manage", "management.yard.manage",
             "management.industry.manage", "management.logs.export"
         }
     };
@@ -45,7 +45,6 @@ public sealed class ManagementWebModule : IBdvmWebModule
         registrar.AddRoute(Post("fleet/maintenance", "management.fleet.manage", "fleet-maintenance.v1"));
         registrar.AddRoute(Post("market/purchase", "management.market.purchase", "market.purchase.v1"));
         registrar.AddRoute(Post("fleet/initial-delivery", "management.fleet.deliver", "initial-delivery.v1"));
-        registrar.AddRoute(Post("lease/manage", "management.lease.manage", "lease-manage.v1"));
         registrar.AddRoute(Post("assignment/manage", "management.assignment.manage", "assignment-manage.v1"));
         registrar.AddRoute(Post("finance/manage", "management.finance.manage", "finance-manage.v1"));
         registrar.AddRoute(Post("yard/manage", "management.yard.manage", "yard-manage.v1"));

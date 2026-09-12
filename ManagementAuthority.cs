@@ -95,7 +95,7 @@ public static class ManagementIntentCatalog
         "bdvm.management.fleet-manage.v1", "bdvm.management.fleet.rename.v1", "bdvm.management.fleet-bundle.v1",
         "bdvm.management.fleet-resale.v1", "bdvm.management.fleet-maintenance.v1",
         "bdvm.management.market.purchase.v1", "bdvm.management.initial-delivery.v1",
-        "bdvm.management.lease-manage.v1", "bdvm.management.assignment-manage.v1",
+        "bdvm.management.assignment-manage.v1",
         "bdvm.management.finance-manage.v1", "bdvm.management.yard-manage.v1", "bdvm.management.industry-manage.v1"
     };
 }
