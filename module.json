@@ -1,1 +1,1 @@
-{"id":"BDVM.Management","version":"1.4.0","kind":"web-feature","standalone":false,"dependencies":["BDVM.Common"],"runtimeDependencies":["BDVM.Web"],"webApi":"1.0","authority":"intent-only","assets":["Assets/app.js","Assets/app.css"]}
+{"id":"BDVM.Management","displayName":"BDVM - Management","version":"1.4.0","kind":"web-feature","standalone":false,"dependencies":["BDVM.Common"],"runtimeDependencies":["BDVM.Web"],"webApi":"1.0","authority":"intent-only","assets":["Assets/app.js","Assets/app.css"]}
