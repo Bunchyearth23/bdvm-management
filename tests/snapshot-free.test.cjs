@@ -7,7 +7,16 @@ const management = fs.readFileSync(path.join(__dirname, '..', 'Assets', 'app.js'
 const bootstrap = fs.readFileSync(path.join(__dirname, '..', '..', 'BDVM.Web', 'Assets', 'bootstrap.js'), 'utf8');
 
 test('realtime notifications mark Management stale without triggering snapshots', () => {
-  assert.match(management, /markStale\(\)\{this\.stale=true\}/);
+  const context = {};
+  require('node:vm').runInNewContext(management, context);
+  const app = Object.create(context.BdvmManagement.ManagementApp.prototype);
+  let requests = 0, reported = '';
+  app.refresh = () => { requests++; };
+  app.setStatus = state => { reported = state; };
+  app.markStale();
+  assert.equal(app.stale, true);
+  assert.equal(reported, 'Stale');
+  assert.equal(requests, 0);
   assert.match(bootstrap, /instance\.markStale\(\)/);
   assert.doesNotMatch(bootstrap, /instance\.refresh\(\{quiet:true\}\)/);
 });
